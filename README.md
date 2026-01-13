@@ -5,17 +5,49 @@ This project focuses on classifying mental workload levels using Electroencephal
 
 The project employs different classification approaches to predict workload levels:
 
-# Statistical Features + Machine Learning Models
-Bandpass Filtering: EEG data is filtered within a specific frequency range (25.8-54.2 Hz) to isolate relevant brainwave activity.
-Feature Extraction: Statistical features such as mean, variance, standard deviation, skewness, and kurtosis are extracted from the filtered EEG signals for each trial.
-Data Splitting: The dataset is split into training and testing sets based on provided testIndices.csv to ensure consistent evaluation across multiple runs.
-Models Used:
-Random Forest Classifier: An ensemble learning method.
-Support Vector Machine (SVM) with RBF Kernel: A powerful non-linear classifier.
-Minimum Distance to Mean (MDM) Classifier (Riemannian Geometry): A method that leverages the geometric properties of covariance matrices for classification, often used in EEG analysis.
-Evaluation: Models are evaluated using accuracy, precision, recall, and F1-score for each run.
-# Statistical + Band Power Features + SVM
-Bandpass Filtering: EEG data is filtered within a broader frequency range (4-50 Hz).
-Feature Extraction: In addition to the statistical features, band power features (Delta, Theta, Alpha, Beta, Gamma) and their ratios (Beta/Alpha, Theta/Alpha) are extracted.
-Model: SVM with RBF kernel is used for classification.
-Evaluation: The model's performance is evaluated using the same metrics.
+# EEG Feature Extraction & Classification
+
+This repository contains a comparative analysis of two distinct feature engineering and machine learning pipelines for EEG (Electroencephalogram) signal classification.
+
+---
+
+## 1. Pipeline: Statistical Features + Machine Learning Models
+
+This methodology focuses on isolating high-frequency brain activity and applying both traditional and geometric classification techniques.
+
+### Preprocessing & Feature Engineering
+* **Bandpass Filtering**: EEG data is filtered between **25.8 Hz and 54.2 Hz** to isolate high-frequency oscillations.
+* **Statistical Feature Extraction**: The following features are extracted from the filtered signals for each trial:
+    * Mean
+    * Variance
+    * Standard Deviation
+    * Skewness
+    * Kurtosis
+* **Data Splitting**: Dataset partitioning is managed via `testIndices.csv` to ensure consistent and reproducible evaluation across runs.
+
+### Model Suite
+| Model | Algorithm Type | Key Characteristic |
+| :--- | :--- | :--- |
+| **Random Forest** | Ensemble Learning | Uses bagging to improve robustness. |
+| **SVM (RBF Kernel)** | Non-linear Classifier | Effective in high-dimensional feature spaces. |
+| **MDM Classifier** | Riemannian Geometry | Classifies via **Minimum Distance to Mean** using covariance matrix geometry. |
+
+
+
+---
+
+## 2. Pipeline: Statistical + Band Power Features + SVM
+
+This methodology expands the spectral range and incorporates power-based features to capture a more holistic view of the subject's brain state.
+
+### Preprocessing & Feature Engineering
+* **Bandpass Filtering**: A broader frequency range of **4 Hz to 50 Hz** is applied.
+* **Feature Set**:
+    * **Statistical Features**: Mean, Variance, Std Dev, Skewness, and Kurtosis.
+    * **Band Power**: Absolute power for **Delta, Theta, Alpha, Beta, and Gamma** bands.
+    * **Spectral Ratios**: Calculation of **Beta/Alpha** and **Theta/Alpha** ratios to identify cognitive states.
+
+
+
+
+
