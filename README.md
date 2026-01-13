@@ -11,7 +11,7 @@ This repository contains a comparative analysis of two distinct feature engineer
 
 ---
 
-## 1. Pipeline: Statistical Features + Machine Learning Models
+## Pipeline: Statistical Features + Machine Learning Models
 
 This methodology focuses on isolating high-frequency brain activity and applying both traditional and geometric classification techniques.
 
@@ -31,21 +31,6 @@ This methodology focuses on isolating high-frequency brain activity and applying
 | **Random Forest** | Ensemble Learning | Uses bagging to improve robustness. |
 | **SVM (RBF Kernel)** | Non-linear Classifier | Effective in high-dimensional feature spaces. |
 | **MDM Classifier** | Riemannian Geometry | Classifies via **Minimum Distance to Mean** using covariance matrix geometry. |
-
-
-
----
-
-## 2. Pipeline: Statistical + Band Power Features + SVM
-
-This methodology expands the spectral range and incorporates power-based features to capture a more holistic view of the subject's brain state.
-
-### Preprocessing & Feature Engineering
-* **Bandpass Filtering**: A broader frequency range of **4 Hz to 50 Hz** is applied.
-* **Feature Set**:
-    * **Statistical Features**: Mean, Variance, Std Dev, Skewness, and Kurtosis.
-    * **Band Power**: Absolute power for **Delta, Theta, Alpha, Beta, and Gamma** bands.
-    * **Spectral Ratios**: Calculation of **Beta/Alpha** and **Theta/Alpha** ratios to identify cognitive states.
 
 
 
