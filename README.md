@@ -1,30 +1,21 @@
 # EEG_Signal_Analysis
 # EEG Workload Classification Pipeline
 
-This repository contains a Python-based pipeline for classifying cognitive workload using EEG signals. It compares traditional machine learning (Random Forest, SVM) against manifold-based learning (Riemannian Geometry).
+This project focuses on classifying mental workload levels using Electroencephalography (EEG) data. It involves loading EEG signals and corresponding workload labels, performing exploratory data analysis in both time and frequency domains, and applying various machine learning models for classification. The goal is to identify distinct patterns in EEG signals that correlate with different workload levels (low, intermediate, high).
 
-## 📌 Overview
+The project employs different classification approaches to predict workload levels:
 
-The script implements a full signal processing and classification workflow:
-1. **Filtering:** Isolating frequency bands relevant to cognitive load.
-2. **Feature Extraction:** Comparing statistical vector features vs. spatial covariance matrices.
-3. **Cross-Validation:** Evaluating performance across multiple test sets/sessions.
-4. **Classification:** Benchmarking three distinct mathematical approaches.
-
----
-
-## 🛠 Methodology
-
-### 1. Data Preprocessing
-* **Bandpass Filter:** The signal is constrained to **25.8 Hz – 54.2 Hz**. This range captures the **High Beta** and **Gamma** oscillations, which are primary biomarkers for high-level information processing and mental effort.
-* **Feature Sets:**
-    * **Statistical:** Extraction of mean, variance, etc., from the filtered time series.
-    * **Riemannian:** Calculation of Spatial Covariance Matrices (SCM) to capture the connectivity between EEG channels.
-
-### 2. Model Architectures
-
-| Model | Category | Approach |
-| :--- | :--- | :--- |
-| **Random Forest** | Ensemble | Uses a forest of decision trees to classify statistical feature vectors. |
-| **SVM (RBF)** | Kernel Method | Maps features into a high-dimensional space using a Radial Basis Function to find a non-linear separator. |
-| **MDM** | Riemannian | **Minimum Distance to Mean**: Classifies covariance matrices based on their geodesic distance on the SPD manifold. |
+# Statistical Features + Machine Learning Models
+Bandpass Filtering: EEG data is filtered within a specific frequency range (25.8-54.2 Hz) to isolate relevant brainwave activity.
+Feature Extraction: Statistical features such as mean, variance, standard deviation, skewness, and kurtosis are extracted from the filtered EEG signals for each trial.
+Data Splitting: The dataset is split into training and testing sets based on provided testIndices.csv to ensure consistent evaluation across multiple runs.
+Models Used:
+Random Forest Classifier: An ensemble learning method.
+Support Vector Machine (SVM) with RBF Kernel: A powerful non-linear classifier.
+Minimum Distance to Mean (MDM) Classifier (Riemannian Geometry): A method that leverages the geometric properties of covariance matrices for classification, often used in EEG analysis.
+Evaluation: Models are evaluated using accuracy, precision, recall, and F1-score for each run.
+# Statistical + Band Power Features + SVM
+Bandpass Filtering: EEG data is filtered within a broader frequency range (4-50 Hz).
+Feature Extraction: In addition to the statistical features, band power features (Delta, Theta, Alpha, Beta, Gamma) and their ratios (Beta/Alpha, Theta/Alpha) are extracted.
+Model: SVM with RBF kernel is used for classification.
+Evaluation: The model's performance is evaluated using the same metrics.
